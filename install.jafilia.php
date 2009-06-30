@@ -96,9 +96,9 @@ function com_install() {
 									<tr>
 										<td align="left" colspan="3">
 											<div align="center">
-												<a title="Delete old and create new Tables" onclick="alert('We suggest to make backup before drop the tables.');" name="Button2" class="button" href="index.php?option=com_jafilia&install_type=2">Delete old and create new Tables &gt;&gt;</a><br /><br />
-												<a title="Delete old and create new Tables with Samples" onclick="alert('We suggest to make backup before drop the tables.');" name="Button2" class="button" href="index.php?option=com_jafilia&install_type=1">Delete old and create new Tables with Samples &gt;&gt;</a><br /><br />
-												<a title="Finish" class="button" href="index.php?option=com_jafilia">Go directly to the Jafilia &gt;&gt;</a><br />
+												<a title="Delete old and create new Tables" onclick="return window.confirm('We suggest to make backup before drop the tables.\nDelete old and create new Tables?');" name="Button2" class="button" href="index.php?option=com_jafilia&install_type=2">Delete old and create new Tables &gt;&gt;</a><br /><br />
+												<a title="Delete old and create new Tables with Samples" onclick="return window.confirm('We suggest to make backup before drop the tables.\nDelete old and create new Tables?');" name="Button2" class="button" href="index.php?option=com_jafilia&install_type=1">Delete old and create new Tables with Samples &gt;&gt;</a><br /><br />
+												<a title="Finish" class="button" href="index.php?option=com_jafilia">Proceed mantaining actual data tables &gt;&gt;</a><br />
 											</div><br />											
 										</td>
 									</tr>
