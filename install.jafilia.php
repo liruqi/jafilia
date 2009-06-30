@@ -9,7 +9,6 @@ if( !defined( '_VALID_MOS' ) && !defined( '_JEXEC' ) ) die( 'Direct Access to '.
  * @author     Created on 08-Apr-2009
  */
 //--No direct access
-
 /**
  * Main installer
  Update Log
