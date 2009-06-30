@@ -34,5 +34,58 @@ VALUES
       echo $db->getErrorMsg();
       return FALSE;
    }
+/*
+--  `jos_jafilia_clicks`
+*/
+
+   $query = "INSERT INTO `#__jafilia_clicks` (`id`, `uid`, `referer`, `ip`, `date`) VALUES
+(1, 9999, 'http://127.0.0.1/samplehost1/', '127.0.0.1', '2009-06-28 14:46:07'),
+(2, 9999, 'http://127.0.0.1/samplehost1/', '127.0.0.1', '2009-06-29 14:47:07'),
+(3, 9999, 'http://127.0.0.1/samplehost2/', '127.0.0.1', '2009-06-30 14:58:40'); ";  
+
+   $db->setQuery($query);
+   if( ! $db->query() )
+   {
+      echo $img_ERROR.JText::_('Unable to insert samples').$BR;
+      echo $db->getErrorMsg();
+      return FALSE;
+   }   
    
+/*
+-- `jos_jafilia_sales`
+*/
+
+   $query = "INSERT INTO `jos_jafilia_sales` (`id`, `uid`, `version`, `order`, `sale`, `status`, `date`, `paid`) VALUES
+(1, 9999, 'click', 0, '5', 'approved', '2009-06-28 14:44:07', 0),
+(2, 9999, 'click', 0, '5', 'approved', '2009-06-29 14:46:07', 0),
+(3, 9999, 'click', 0, '5', 'approved', '2009-06-30 14:58:40', 0);";
+
+   $db->setQuery($query);
+   if( ! $db->query() )
+   {
+      echo $img_ERROR.JText::_('Unable to insert samples').$BR;
+      echo $db->getErrorMsg();
+      return FALSE;
+   }  
+
+/*
+-- `jos_jafilia_user`
+*/
+
+   $query = "INSERT INTO `jos_jafilia_user` (`id`, `uid`, `firstname`, `lastname`, `street`, `zipcode`, `location`, `mail`, `fon`, `url`, `bank`, `blz`, `konto`, `published`, `paypal`, `state`) VALUES
+(1, 9999, 'testusername', 'testuserlastname', 'test street', '00-999', 'mars', 'testmail@testdomain.com', '123456789', 'www.testurloftestuser.com', 'bank1', 77777777777, 5555555555555, 1, '', '');";
+
+
+   $db->setQuery($query);
+   if( ! $db->query() )
+   {
+      echo $img_ERROR.JText::_('Unable to insert samples').$BR;
+      echo $db->getErrorMsg();
+      return FALSE;
+   } 
+   
+   if( $errors ) {
+      return FALSE;
+   }   
+   return TRUE;	   
 ?>
