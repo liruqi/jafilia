@@ -2,7 +2,7 @@
 // no direct access
 defined( '_JEXEC' ) or die( 'Restricted access' );
 // Set flag that this is a parent file
-
+//******************************** this file set cookie and save clicks
 //global $jafversion, $jafclick;
 $database = &JFactory::getDbo();
 $path = JPATH_ADMINISTRATOR.DS.'components'.DS.'com_jafilia'.DS.'config.jafilia.php';
@@ -35,8 +35,8 @@ if(isset($_GET['affiliate'])) {
 		if($jafversion == "click")  {
 
 			if($count < 1)  {
-				$database->setQuery("SELECT click FROM #__jafilia_config");
-				$click = $database->loadResult();
+				//$database->setQuery("SELECT click FROM #__jafilia_config");
+				//$click = $database->loadResult();
 				
 				$database->setQuery("INSERT INTO #__jafilia_sales SET
 									uid='$aff',
@@ -59,5 +59,6 @@ if(isset($_GET['affiliate'])) {
 			$database->query() or die( $database->stderr() );
 		}
 	}	
+/*******************************/
 
 ?>

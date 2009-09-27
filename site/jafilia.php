@@ -7,10 +7,13 @@
  * @author     Arkadiusz Maniecki {@link http://www.jafilia.pl}
  * @author     Created on 08-Apr-2009
  */
-error_reporting(E_ALL);
+//error_reporting(E_ALL);
 //--No direct access
 defined( '_JEXEC' ) or die( '=;)' );
-JRequest::setVar( 'JAF_COMP_VERSION', '1.5 RC1' );
+include( JPATH_ADMINISTRATOR.DS."components".DS."com_jafilia".DS."helpers".DS."version.php" );
+$JAFVERSION =& new jafVersion();
+$shortversion = $JAFVERSION->RELEASE . " " . $JAFVERSION->DEV_STATUS; //. " " . $JAFVERSION->REVISION;
+JRequest::setVar( 'JAF_COMP_VERSION', $shortversion );
 
 $urlhelpers = JUri::base(true);
 $pathc = JPATH_SITE;
@@ -21,7 +24,9 @@ $itemid = $db->loadResult();
 global $Itemid;
 $language =& JFactory::getLanguage();
 $language->load('com_jafilia');
-require_once(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_jafilia'.DS.'config.jafilia.php');//include
+$path = JPATH_ADMINISTRATOR.DS.'components'.DS.'com_jafilia'.DS.'config.jafilia.php';
+include($path);
+//require_once(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_jafilia'.DS.'config.jafilia.php');//include
 require_once(JPATH_ADMINISTRATOR.DS."components".DS."com_jafilia".DS."helpers".DS."jafilia.class.php");
 JTable::addIncludePath(JPATH_SITE.DS.'components'.DS.'com_jafilia'.DS.'tables');
 $row =& JTable::getInstance('jafilia_user', 'Table');
@@ -30,6 +35,7 @@ JRequest::setVar( 'terms', $jafterms );
 JRequest::setVar( 'reglink', $jafloginmod );
 JRequest::setVar( 'db', $db );
 JRequest::setVar( 'jaftpl', $jaftemplate );
+//echo"<hr>".$jaftemplate;
 $my = &JFactory::getUser();
 $user = new cluserdata($my->id);
 $tpl = array(

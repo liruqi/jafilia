@@ -23,13 +23,13 @@ class jafVersion {
 	// Song by Enya
 	var $CODENAME = 'SUNSHINE';
 	/** @var string Date */
-	var $RELDATE = '26/06/2009';
+	var $RELDATE = '27/09/2009';
 	/** @var string Time */
 	var $RELTIME = '23:00';
 	/** @var string Timezone */
 	var $RELTZ = 'GMT';
 	/** @var string Revision */
-	var $REVISION = '1, build: 12';
+	var $REVISION = '2 (build: 16)';
 	/** @var string Copyright Text */
 	var $COPYRIGHT = 'Copyright &copy; 2008-2009 Jafilia Development Team - All rights reserved.'; 
 	/** @var string URL */
@@ -37,7 +37,7 @@ class jafVersion {
 }
 $JAFVERSION =& new jafVersion();
 
-$shortversion = $JAFVERSION->PRODUCT . " " . $JAFVERSION->RELEASE . " " . $JAFVERSION->DEV_STATUS. " (" . $JAFVERSION->REVISION. ")";
+$shortversion = $JAFVERSION->PRODUCT . " " . $JAFVERSION->RELEASE . " " . $JAFVERSION->DEV_STATUS. " " . $JAFVERSION->REVISION;
 	
 $myVersion = $shortversion . " [".$JAFVERSION->CODENAME ."] <br />" . $JAFVERSION->RELDATE . " "
 	. $JAFVERSION->RELTIME . " " . $JAFVERSION->RELTZ;

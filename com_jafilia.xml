@@ -1,15 +1,15 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE install SYSTEM "http://dev.joomla.org/xml/1.5/component-install.dtd">
-<install type="component" version="1.5.0">
+<install type="component" version="1.5.0" method="upgrade">
     <name>Jafilia</name>
-    <version>1.5.0 RC1</version>
-    <description><![CDATA[Jafilia 1.5 BETA. Affiliate networking component for Joomla 1.5.x]]></description>
+    <version>1.5.0 RC2</version>
+    <description><![CDATA[Jafilia 1.5 - Affiliate networking component for Joomla 1.5.x]]></description>
     <license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
     <author>Arkadiusz Maniecki</author>
-    <authoremail>info@jafilia.com</authoremail>
-    <authorurl>http://www.jafilia.com</authorurl>
+    <authorEmail>biuro@webwizard.pl</authorEmail>
+    <authorUrl>http://www.jafilia.com</authorUrl>
     <copyright>Copyright © 2008 - 2009 Jafilia.com. All rights reserved.</copyright>
-    <creationDate>25-Jun-2009</creationDate>
+    <creationDate>27-09-2009</creationDate>
     <installfile>install.jafilia.php</installfile>
     <uninstallfile>uninstall.jafilia.php</uninstallfile>
     <files folder="site">
@@ -23,12 +23,13 @@
         <filename>jafilia.php</filename>
     </files>
     <languages folder="site/language">
+        <language tag="du-DU">du-DU/du-DU.com_jafilia.ini</language>
         <language tag="en-GB">en-GB/en-GB.com_jafilia.ini</language>
         <language tag="es-ES">es-ES/es-ES.com_jafilia.ini</language>
+        <language tag="fr-FR">fr-FR/fr-FR.com_jafilia.ini</language>
+        <language tag="ge-GE">ge-GE/ge-GE.com_jafilia.ini</language>
         <language tag="pl-PL">pl-PL/pl-PL.com_jafilia.ini</language>
-		<language tag="pl-PL">du-DU/du-DU.com_jafilia.ini</language>
-		<language tag="pl-PL">fr-FR/fr-FR.com_jafilia.ini</language>
-		<language tag="pl-PL">ge-GE/ge-GE.com_jafilia.ini</language>
+		<language tag="de-DE">de-DE/de-DE.com_jafilia.ini</language>
     </languages>
 	<media folder="admin/images" destination="com_jafilia/images">
 		<filename>jafilia-logo48x48.png</filename>
@@ -71,8 +72,8 @@
             <folder>images</folder>
             <folder>language</folder>
             <folder>models</folder>
+            <folder>sql</folder>
             <folder>tables</folder>
-			<folder>sql</folder>
             <folder>views</folder>
             <filename>CHANGELOG.php</filename>
             <filename>admin.jafilia.php</filename>
@@ -81,12 +82,24 @@
             <filename>controller.php</filename>
         </files>
         <languages folder="admin/language">
+            <language tag="du-DU">du-DU/du-DU.com_jafilia.ini</language>
             <language tag="en-GB">en-GB/en-GB.com_jafilia.ini</language>
             <language tag="es-ES">es-ES/es-ES.com_jafilia.ini</language>
+            <language tag="fr-FR">fr-FR/fr-FR.com_jafilia.ini</language>
+            <language tag="ge-GE">ge-GE/ge-GE.com_jafilia.ini</language>
             <language tag="pl-PL">pl-PL/pl-PL.com_jafilia.ini</language>
-			<language tag="pl-PL">du-DU/du-DU.com_jafilia.ini</language>
-			<language tag="pl-PL">fr-FR/fr-FR.com_jafilia.ini</language>
-			<language tag="pl-PL">ge-GE/ge-GE.com_jafilia.ini</language>
+			<language tag="de-DE">de-DE/de-DE.com_jafilia.ini</language>
         </languages>
     </administration>
+	
+    <plugins>
+        <plugin plugin="jafilia" order="0" group="system">
+            <files folder="plugins">
+                <file>jafilia.php</file>
+				<file>jafilia.xml</file>
+            </files>
+			<languages />
+        </plugin>
+    </plugins>
+	
 </install>

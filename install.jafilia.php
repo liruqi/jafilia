@@ -19,6 +19,152 @@ if( !defined( '_VALID_MOS' ) && !defined( '_JEXEC' ) ) die( 'Direct Access to '.
     * Backend archive file successfully deleted.
     * The sample data was installed successfully.
  */
+ /*
+ * This part is taken from the Joomla Tags component, courtesy of
+ * joomlatags.org (GPL'd)
+ */
+$status = new JObject();
+//$status->modules = array();
+$status->plugins = array();
+/*********************/
+$plugins = &$this->manifest->getElementByPath( 'plugins' );
+if( is_a( $plugins, 'JSimpleXMLElement' ) && count( $plugins->children() ) )
+{
+//Install Component Success
+	foreach( $plugins->children() as $plugin )
+	{
+		$pname = $plugin->attributes( 'plugin' );
+		$pgroup = $plugin->attributes( 'group' );
+		$porder = $plugin->attributes( 'order' );
+
+		// Set the installation path
+		if( !empty( $pname ) && !empty( $pgroup ) ) {
+			$this->parent->setPath( 'extension_root', JPATH_ROOT.DS.'plugins'.DS.$pgroup );
+		} else {
+			$this->parent->abort( JText::_( 'Plugin' ).' '.JText::_( 'Install' ).': '.JText::_( 'No plugin file specified' ) );
+			return false;
+		}
+
+		/**
+		 * ---------------------------------------------------------------------------------------------
+		 * Filesystem Processing Section
+		 * ---------------------------------------------------------------------------------------------
+		 */
+
+		// If the plugin directory does not exist, lets create it
+		$created = false;
+		if( !file_exists( $this->parent->getPath( 'extension_root' ) ) ) {
+			if( !$created = JFolder::create( $this->parent->getPath( 'extension_root' ) ) ) {
+				$this->parent->abort( JText::_( 'Plugin' ).' '.JText::_( 'Install' ).': '.JText::_( 'Failed to create directory' ).': "'.$this->parent->getPath( 'extension_root' ).'"' );
+				return false;
+			}
+		}
+		/*
+		 * If we created the plugin directory and will want to remove it if we
+		 * have to roll back the installation, lets add it to the installation
+		 * step stack
+		 */
+		if( $created ) {
+			$this->parent->pushStep( array( 'type' => 'folder', 'path' => $this->parent->getPath( 'extension_root' ) ) );
+		}
+
+		// Copy all necessary files
+		$element = &$plugin->getElementByPath( 'files' );
+		if( $this->parent->parseFiles( $element, -1 ) === false ) {
+			// Install failed, roll back changes
+			$this->parent->abort();
+			return false;
+		}
+
+		// Copy all necessary files
+		$element = &$plugin->getElementByPath( 'languages' );
+		if( $this->parent->parseLanguages( $element, 1 ) === false ) {
+			// Install failed, roll back changes
+			$this->parent->abort();
+			return false;
+		}
+
+		// Copy media files
+		$element = &$plugin->getElementByPath('media');
+		if( $this->parent->parseMedia( $element, 1 ) === false ) {
+			// Install failed, roll back changes
+			$this->parent->abort();
+			return false;
+		}
+
+		/**
+		 * ---------------------------------------------------------------------------------------------
+		 * Database Processing Section
+		 * ---------------------------------------------------------------------------------------------
+		 */
+		$db = &JFactory::getDBO();
+
+		// Check to see if a plugin by the same name is already installed
+		$query = 'SELECT `id`' .
+                ' FROM `#__plugins`' .
+                ' WHERE folder = '.$db->Quote( $pgroup ) .
+                ' AND element = '.$db->Quote( $pname );
+		$db->setQuery( $query );
+		if( !$db->Query() ) {
+			// Install failed, roll back changes
+			$this->parent->abort( JText::_( 'Plugin' ).' '.JText::_( 'Install' ).': '.$db->stderr( true ) );
+			return false;
+		}
+		$id = $db->loadResult();
+
+		// Was there a plugin already installed with the same name?
+		if( $id ) {
+
+			if( !$this->parent->getOverwrite() )
+			{
+				// Install failed, roll back changes
+				$this->parent->abort( JText::_( 'Plugin' ).' '.JText::_( 'Install' ).': '.JText::_( 'Plugin' ).' "'.$pname.'" '.JText::_( 'already exists!' ) );
+				return false;
+			}
+
+		} else {
+			$row = &JTable::getInstance( 'plugin' );
+			$row->name = JText::_( ucfirst( $pgroup ) ).' - '.JText::_( ucfirst( $pname ) );
+			$row->ordering = $porder;
+			$row->folder = $pgroup;
+			$row->iscore = 0;
+			$row->access = 0;
+			$row->client_id = 0;
+			$row->element = $pname;
+			if( $pgroup == 'system' )
+			{
+				$row->published = 1;//0; keran
+			} else {
+				$row->published = 1;
+			}
+			$row->params = '';
+
+			if( !$row->store() ) {
+				// Install failed, roll back changes
+				$this->parent->abort( JText::_( 'Plugin' ).' '.JText::_( 'Install' ).': '.$db->stderr( true ) );
+				return false;
+			}
+		}
+
+		$status->plugins[] = array( 'name'=>$pname, 'group'=>$pgroup );
+	}
+} 
+/********************/ 
+/*
+ * end code from joomlatags
+ */
+/*
+foreach( $status->modules as $mstatus )
+{
+	JError::raiseNotice( 200, 'com_jcollection::installModules: '.$mstatus['name'].' installed' );
+}
+*/
+foreach( $status->plugins as $pstatus )
+{
+	//JError::raiseNotice( 200, 'com_jcollection::installPlugins: '.$pstatus['name'].' installed in group '.$pstatus['group'] );
+	JError::raiseNotice( 200, JText::_( 'Install' ).' '.JText::_( 'Plugin' ).' Success: '.$pstatus['name'].' installed in group '.$pstatus['group'] );
+}
+
 function com_install() {
 	$errors = FALSE;
 	//global $mosConfig_absolute_path, $mosConfig_dbprefix, $database;
