@@ -35,15 +35,48 @@ global $mainframe;
 				echo $pane->endPanel()."\n";
 				/***/
 				echo $pane->startPanel(jtext::_('JAF_CHARTS'),'statistics')."\n";
+	$db = & JFactory::getDBO();
+	/****/
+	$sql = 'SELECT COUNT(`id`) FROM `#__jafilia_user`'; 
+	$sql2 = 'SELECT COUNT(`id`) FROM `#__jafilia_user` WHERE published = 1';
+	//$sql = 'SELECT `id` FROM `jos_components` WHERE `name` LIKE \'Jafilia\' LIMIT 1 '; 
+	$db->setQuery($sql);
+	if($db->query()) $statu = $db->loadResult();  
+	$db->setQuery($sql2);
+	if($db->query()) $statu2 = $db->loadResult(); 
 
-echo'
+	$sql = 'SELECT COUNT(`id`) FROM `#__jafilia_banner` WHERE `version`="text"'; 
+	$sql2 = 'SELECT COUNT(`id`) FROM `#__jafilia_banner` WHERE `version`="text" AND published=1';
+	//$sql = 'SELECT `id` FROM `jos_components` WHERE `name` LIKE \'Jafilia\' LIMIT 1 '; 
+	$db->setQuery($sql);
+	if($db->query()) $statb = $db->loadResult();  
+	$db->setQuery($sql2);
+	if($db->query()) $statb2 = $db->loadResult(); 
+
+	$sql = 'SELECT COUNT(`id`) FROM `#__jafilia_banner` WHERE `version`="banner"'; 
+	$sql2 = 'SELECT COUNT(`id`) FROM `#__jafilia_banner` WHERE `version`="banner" AND published=1';
+	//$sql = 'SELECT `id` FROM `jos_components` WHERE `name` LIKE \'Jafilia\' LIMIT 1 '; 
+	$db->setQuery($sql);
+	if($db->query()) $statc = $db->loadResult();  
+	$db->setQuery($sql2);
+	if($db->query()) $statc2 = $db->loadResult(); 	
+
+	$sql = 'SELECT COUNT(`id`) FROM `#__jafilia_campaigns`'; 
+	$sql2 = 'SELECT COUNT(`id`) FROM `#__jafilia_campaigns` WHERE published=1';
+	//$sql = 'SELECT `id` FROM `jos_components` WHERE `name` LIKE \'Jafilia\' LIMIT 1 '; 
+	$db->setQuery($sql);
+	if($db->query()) $statg = $db->loadResult();  
+	$db->setQuery($sql2);
+	if($db->query()) $statg2 = $db->loadResult();
+	
+echo'<div style="padding:0px 10px;">
 <p>
-(to do)<br>
-Users:<br>
-Campaigns:<br>
-Banners:<br>
-Links:
+Users: '.$statu2.' / '.$statu.'<br>
+Campaigns: '.$statg2.' / '.$statg.' (to do)<br>
+Banners: '.$statc2.' / '.$statc.'<br>
+Links: '.$statb2.' / '.$statb.'
 </p>
+</div>
 ';
 
 				echo $pane->endPanel()."\n";

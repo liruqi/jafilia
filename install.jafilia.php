@@ -266,6 +266,7 @@ function com_install() {
    if( $errors ) {
       return FALSE;
    }   
+   include_once( "sql/sql.menu.jafilia.1.5.0.php" );
    return TRUE;	
 }
 ?>

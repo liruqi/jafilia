@@ -29,7 +29,7 @@ class jafVersion {
 	/** @var string Timezone */
 	var $RELTZ = 'GMT';
 	/** @var string Revision */
-	var $REVISION = '2 (build: 16)';
+	var $REVISION = '2 (build: 19)';
 	/** @var string Copyright Text */
 	var $COPYRIGHT = 'Copyright &copy; 2008-2009 Jafilia Development Team - All rights reserved.'; 
 	/** @var string URL */

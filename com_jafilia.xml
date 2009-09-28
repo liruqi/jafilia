@@ -30,6 +30,7 @@
         <language tag="ge-GE">ge-GE/ge-GE.com_jafilia.ini</language>
         <language tag="pl-PL">pl-PL/pl-PL.com_jafilia.ini</language>
 		<language tag="de-DE">de-DE/de-DE.com_jafilia.ini</language>
+		<language tag="pt-PT">pt-PT/pt-PT.com_jafilia.ini</language>
     </languages>
 	<media folder="admin/images" destination="com_jafilia/images">
 		<filename>jafilia-logo48x48.png</filename>
@@ -89,6 +90,7 @@
             <language tag="ge-GE">ge-GE/ge-GE.com_jafilia.ini</language>
             <language tag="pl-PL">pl-PL/pl-PL.com_jafilia.ini</language>
 			<language tag="de-DE">de-DE/de-DE.com_jafilia.ini</language>
+			<language tag="pt-PT">pt-PT/pt-PT.com_jafilia.ini</language>
         </languages>
     </administration>
 	

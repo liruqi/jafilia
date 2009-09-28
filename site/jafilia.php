@@ -35,6 +35,7 @@ JRequest::setVar( 'terms', $jafterms );
 JRequest::setVar( 'reglink', $jafloginmod );
 JRequest::setVar( 'db', $db );
 JRequest::setVar( 'jaftpl', $jaftemplate );
+JRequest::setVar( 'jaadminmail', $jafadminmail );
 //echo"<hr>".$jaftemplate;
 $my = &JFactory::getUser();
 $user = new cluserdata($my->id);
@@ -280,6 +281,8 @@ $JS=JRequest::getVar('JS');
 function JAFsave()  {
 	//global $tpl;
 	global $mainframe, $pathc;
+	$jaadminmail = JRequest::getVar( 'jaadminmail');
+
 	JTable::addIncludePath(JPATH_COMPONENT.DS.'tables');
 	$row = JTable::getInstance('jafilia_user', 'table');
 	
@@ -297,17 +300,22 @@ function JAFsave()  {
 	{
 		if(isset($_POST['submit']))  {		
 			$subject = JText::_('JAF_MAIL_SUBJECT');
-			$message = sprintf(JText::_('JAF_MAIL_NEWUSER'), $pathc."/administrator/index.php?option=com_jafilia&task=user");
-			//mosMail($mosConfig_mailfrom, $mosConfig_fromname,$jaadminmail,$subject,$message);		
-			//mosMail($from, $fromname, $recipient, $subject, $body, $mode, $cc, $bcc, $attachment, $replyto, $replytoname )
-			//mosMail($from, $fromname, $recipient, $subject, $message )
-			//JUtility::sendMail($from, $fromname, $recipient, $subject, $body, $mode, $cc, $bcc, $attachment, $replyto, $replytoname );
-			JUtility::sendMail($mosConfig_mailfrom, $mosConfig_fromname,$jaadminmail,$subject,$message);
+			$message = sprintf(JText::_('JAF_MAIL_NEWUSER'), "\n".JURI::root()."administrator/index.php?option=com_jafilia&controller=user\n");
+			$MailFrom	= $mainframe->getCfg('mailfrom');
+			$FromName	= $mainframe->getCfg('fromname');
+			$SiteName	= $mainframe->getCfg('sitename');
+			if ($jaadminmail=="youremailname@yourdomain.com") $jaadminmail=$MailFrom;
+			/*
+			echo"<hr>1 ".$MailFrom; 
+			echo"<hr>2 ".$FromName; 
+			echo"<hr>3 ".$jaadminmail;
+			echo"<hr>4 ".$subject;
+			echo"<hr>5 ".$message;
+			*/
+			JUtility::sendMail($MailFrom, $FromName, $jaadminmail, $subject, $message);
 		}		
 		$mainframe->redirect('index.php?option=com_jafilia&task=mainpage',JText::_('JAF_SAVED'));
 	}	
-	//send adminmail if new partner signed up
-	//mosRedirect(JRoute::_("index.php?option=com_jafilia&task=mainpage&Itemid=".JRequest::getVar('Itemid')."&mosmsg=saved"));	
 }
 
 /**

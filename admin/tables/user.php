@@ -26,7 +26,7 @@ class TableUser extends JTable {
     * @var string
     */
 
-		var $id = null;
+		//var $id = null;
 		var $uid = null;
 		var $firstname = null;
 		var $lastname = null;
