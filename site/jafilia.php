@@ -14,7 +14,62 @@ include( JPATH_ADMINISTRATOR.DS."components".DS."com_jafilia".DS."helpers".DS."v
 $JAFVERSION =& new jafVersion();
 $shortversion = $JAFVERSION->RELEASE . " " . $JAFVERSION->DEV_STATUS; //. " " . $JAFVERSION->REVISION;
 JRequest::setVar( 'JAF_COMP_VERSION', $shortversion );
-
+/**********/
+		/*
+			P  	Pending
+			C 	Confirmed
+			X 	Cancelled
+			R 	Refunded
+			S 	Shipped	
+		*/
+		$db = &JFactory::getDbo();
+		$db2 = &JFactory::getDbo();
+		$db3 = &JFactory::getDbo();
+		$query="SELECT * FROM #__jafilia_sales WHERE version='sale'";
+		$db->setQuery($query);						
+		$rows = $db->loadObjectList();
+		foreach ($rows as $row)	{
+			$query2="SELECT order_status FROM #__vm_orders WHERE order_id=".$row->order." LIMIT 1";	//order_status
+			$db2->setQuery($query2);						
+			$rsta = $db2->loadResult();
+			//echo"<hr>".$row->order." - ".$rsta." = ".$row->status;
+			switch ($rsta) {
+				case "P":
+				if ($row->status!="open") {
+				$sql = 'UPDATE `#__jafilia_sales` SET `status` = \'open\' WHERE `order` = '.$row->order.' LIMIT 1;'; 
+				//echo"<hr>".$sql;
+				$db3->setQuery($sql);
+					if (!$db3->query()) {
+					//echo'nie zapisano zmiany';
+					}
+					//else echo 'zapisano';
+				}
+				break;
+				case "C":
+				if ($row->status!="approved") {
+				$sql = 'UPDATE `#__jafilia_sales` SET `status` = \'approved\' WHERE `order` = '.$row->order.' LIMIT 1;'; 
+				//echo"<hr>".$sql;
+				$db3->setQuery($sql);
+					if (!$db3->query()) {
+					//echo'nie zapisano zmiany';
+					}
+					//else echo 'zapisano';
+				}
+				break;
+				case "X":
+				if ($row->status!="canceled") {
+				$sql = 'UPDATE `#__jafilia_sales` SET `status` = \'canceled\' WHERE `order` = '.$row->order.' LIMIT 1;'; 
+				//echo"<hr>".$sql;
+				$db3->setQuery($sql);
+					if (!$db3->query()) {
+					//echo'nie zapisano zmiany';
+					}
+					//else echo 'zapisano';
+				}
+				break;
+			}
+		}
+/*********/
 $urlhelpers = JUri::base(true);
 $pathc = JPATH_SITE;
 $admpath = JPATH_ADMINISTRATOR;
@@ -31,6 +86,7 @@ require_once(JPATH_ADMINISTRATOR.DS."components".DS."com_jafilia".DS."helpers".D
 JTable::addIncludePath(JPATH_SITE.DS.'components'.DS.'com_jafilia'.DS.'tables');
 $row =& JTable::getInstance('jafilia_user', 'Table');
 JRequest::setVar( 'shortdesc', $jafshortdesc );
+
 JRequest::setVar( 'terms', $jafterms );
 JRequest::setVar( 'reglink', $jafloginmod );
 JRequest::setVar( 'db', $db );
@@ -229,8 +285,11 @@ function JAFnotauth()  {
 	$jaftpl = JRequest::getVar('jaftpl');
 	$db = JRequest::getVar('db');
 	$jaloginmod = JRequest::getVar('reglink');
-	$SHORTDESC = JRequest::getVar('shortdesc');
-	
+	//$SHORTDESC = JRequest::getVar('shortdesc');
+	$path = JPATH_ADMINISTRATOR.DS.'components'.DS.'com_jafilia'.DS.'config.jafilia.php';
+	include($path);
+	$SHORTDESC = $jafshortdesc;
+	//echo"<hr>".$jafshortdesc."<hr>";
 	$db->setQuery("SELECT id FROM #__menu WHERE link='index.php?option=com_virtuemart'");
 	$vmitemid = $db->loadResult();	
 
@@ -251,11 +310,18 @@ $my = &JFactory::getUser();
 $db = JRequest::getVar('db');
 $STYLE= JRequest::getVar('STYLE');
 $JS=JRequest::getVar('JS'); 
+$jaloginmod = JRequest::getVar('reglink');
 
-	$db->setQuery("SELECT * FROM #__vm_user_info WHERE user_id='".$my->id."'");
-	$userdetails = $db->loadObjectList();
-
-	foreach($userdetails as $detail)  {
+	if($jaloginmod == "VM") {
+		//$REGLINK = JRoute::_('index.php?option=com_virtuemart&page=shop.registration&Itemid='.$vmitemid);
+		$db->setQuery("SELECT * FROM #__vm_user_info WHERE user_id='".$my->id."'");
+		$userdetails = $db->loadObjectList();
+		/*
+		echo"<hr><pre>";
+		print_r($userdetails);
+		echo"</pre><hr>";
+		*/
+		foreach($userdetails as $detail) {
 			$FNAME=$detail->first_name;
 			$LNAME=$detail->last_name;
 			$STREET=$detail->address_1;
@@ -267,9 +333,28 @@ $JS=JRequest::getVar('JS');
 			$BNAME=$detail->bank_name;
 			$BLZ=$detail->bank_sort_code;
 			$BACCOUNT=$detail->bank_account_nr;
-		}
-		$UID = $my->id;
-		$TERMS = JRequest::getVar('terms');
+		}			
+	} else {		
+		//$REGLINK = JRoute::_('index.php?option=com_user&task=register');
+		/*
+		echo"<hr><pre>";
+		print_r($my);
+		echo"</pre><hr>";
+		*/
+		$FNAME=$my->name;
+		$LNAME=$my->username;
+		$STREET="";
+		$ZIP="";
+		$CITY="";
+		$STATE="";
+		$EMAIL=$my->email;
+		$FON="";
+		$BNAME="";
+		$BLZ="";
+		$BACCOUNT="";		
+	}
+	$UID = $my->id;
+	$TERMS = JRequest::getVar('terms');
 	
 	include('templates'.DS.$jaftpl.DS.'registerForm.tpl');
 	include('templates'.DS.$jaftpl.DS.'footer.tpl');	
@@ -436,7 +521,7 @@ $mosConfig_list_limit = $app->getCfg('list_limit');
 			$TOTAL=$total;
 			$PAGENAV=$pageNav->writePagesLinks( $link );
 			$BOX=JText::_('JAF_DISPLAY') . $pageNav->getLimitBox( $link );
-			
+	
 	$db->setQuery("SELECT * FROM #__jafilia_sales WHERE uid='".$my->id."'  
 						ORDER BY date DESC 
 						LIMIT $limitstart, $limit"
@@ -454,7 +539,7 @@ $mosConfig_list_limit = $app->getCfg('list_limit');
 * shows the payings
 *
 */
-function JAFpayouts()  {
+function JAFpayouts() {
 global $params, $mosConfig_list_limit;
 	$jaftpl = JRequest::getVar('jaftpl');
 	$tpl = JRequest::getVar('tpl');

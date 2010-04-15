@@ -70,21 +70,21 @@ $document->addStyleSheet('components/com_jafilia/templates/default/style.css'); 
 	  <input name="paypal" type="text" size="20" />
 	  </label><br />
     <span class="textfieldRequiredMsg"><?php echo JText::_('JAF_TEXT_REQUIRED'); ?></span></span></div>
-	<div id="bank"><span id="sprytextfield9">
-	  <label><span class="title"><?php echo JText::_('JAF_BANK'); ?>:*</span>
+	<div id="bank">
+	  <label><span class="title"><?php echo JText::_('JAF_BANK'); ?>:</span>
 	  <input name="bank" type="text" size="20" value="<?php echo $BNAME; ?>" />
 	  </label><br />
-    <span class="textfieldRequiredMsg"><?php echo JText::_('JAF_TEXT_REQUIRED'); ?></span></span></div>
-	<div id="blz"><span id="sprytextfield10">
-	  <label><span class="title"><?php echo JText::_('JAF_BLZ'); ?>:*</span>
+    </div>
+	<div id="blz">
+	  <label><span class="title"><?php echo JText::_('JAF_BLZ'); ?>:</span>
 	  <input name="blz" type="text" size="20" value="<?php echo $BLZ; ?>" />
 	  </label><br />
-    <span class="textfieldRequiredMsg"><?php echo JText::_('JAF_TEXT_REQUIRED'); ?></span></span></div>
-	<div id="konto"><span id="sprytextfield11">
-	  <label><span class="title"><?php echo JText::_('JAF_KONTO'); ?>:*</span>
+    </div>
+	<div id="konto">
+	  <label><span class="title"><?php echo JText::_('JAF_KONTO'); ?>:</span>
 	  <input name="konto" type="text" size="20" value="<?php echo $BACCOUNT; ?>" />
 	  </label><br />
-    <span class="textfieldRequiredMsg"><?php echo JText::_('JAF_TEXT_REQUIRED'); ?></span></span></div>
+    </div>
 	<div id="confirm">
 	<span id="sprycheckbox1">
 	<label><span class="title"><?php 

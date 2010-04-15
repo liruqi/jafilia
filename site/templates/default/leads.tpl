@@ -16,11 +16,11 @@
 <?php 
 //echo $ROWS; 
 	foreach($rows as $row)  {
-		if($row->status == "approved")  {
-			$status = JText::_('JAF_APPROVED');
-		} else {
-			$status = JText::_('JAF_OPEN');
-		}		
+	
+		if($row->status == "approved") $status = JText::_('JAF_APPROVED');
+		if($row->status == "open") $status = JText::_('JAF_OPEN');
+		if($row->status == "canceled") $status = JText::_('JAF_CANCELED');
+		
 		$DATE=JHTML::_('date', $row->date, JText::_('DATE_FORMAT_LC1'));//mosFormatDate ($row->date, '%d.%m.%Y');
 		$VERSION=$row->version;
 		$ORDER=$row->order;

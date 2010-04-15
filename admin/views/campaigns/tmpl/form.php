@@ -14,7 +14,27 @@ defined( '_JEXEC' ) or die( '=;)' );
 			<td><?php echo JText::_( 'Title' ); ?>:</td>
 			<td>
 				<input class="text_area" type="text" name="title" id="title" size="32" maxlength="250" value="<?php echo $this->Campaigns->title;?>" />
-			</td>	
+				
+			</td>
+		</tr>
+		<tr>
+			<td><?php echo JText::_( 'Start Date' ); ?>:</td>
+			<td>
+			<?php /*echo JHTML::_('calendar', $publish_up, 'publish_up', 'publish_up', '%Y-%m-%d %H:%M:%S', array('class'=>'inputbox', 'size'=>'25',  'maxlength'=>'19')); */ ?>
+				<?php echo JHTML::_('calendar', $this->Campaigns->startdate, 'startdate', 'startdate', '%Y-%m-%d %H:%M:%S', array('class'=>'inputbox', 'size'=>'25',  'maxlength'=>'19')); ?>
+			</td>
+		</tr>
+		<tr>
+			<td><?php echo JText::_( 'End Date' ); ?>:</td>
+			<td>
+				<?php echo JHTML::_('calendar', $this->Campaigns->enddate, 'enddate', 'enddate', '%Y-%m-%d %H:%M:%S', array('class'=>'inputbox', 'size'=>'25',  'maxlength'=>'19')); ?>
+			</td>
+		</tr>
+		<tr>
+			<td><?php echo JText::_( 'Published' ); ?>:</td>
+			<td>
+p
+			</td>					
 		</tr>			
 		<tr>
 			<td><?php echo JText::_('JAF_VERSION'); ?>:</td>

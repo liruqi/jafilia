@@ -23,15 +23,15 @@ class jafVersion {
 	// Song by Enya
 	var $CODENAME = 'SUNSHINE';
 	/** @var string Date */
-	var $RELDATE = '27/09/2009';
+	var $RELDATE = '15/04/2010';
 	/** @var string Time */
-	var $RELTIME = '23:00';
+	var $RELTIME = '17:00';
 	/** @var string Timezone */
 	var $RELTZ = 'GMT';
 	/** @var string Revision */
-	var $REVISION = '2 (build: 19)';
+	var $REVISION = '3 (build: 31)';
 	/** @var string Copyright Text */
-	var $COPYRIGHT = 'Copyright &copy; 2008-2009 Jafilia Development Team - All rights reserved.'; 
+	var $COPYRIGHT = "Copyright &copy; 2008-2010 Jafilia Development Team - All rights reserved."; 
 	/** @var string URL */
 	var $URL = '<a href="http://www.jafilia.com">Jafilia</a> is a Free Component for Joomla! released under the GNU/GPL License.';
 }

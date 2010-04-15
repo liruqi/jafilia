@@ -5,8 +5,8 @@ class JafiliaViewJafilia extends JView {
 	function display($tpl = null) {
 		/* Get the Cpanel images */
 		$cpanel_images = new stdClass();
-		//$cpanel_images->campaigns = $this->CpanelButton('configuration48.jpg', 'index.php?option=com_jafilia&controller=campaigns', JText::_('JAF_CAMPAIGNS'));
-		$cpanel_images->campaigns = $this->CpanelButton('configuration48.jpg', 'index.php?option=com_jafilia', JText::_('Campaigns under construction'));
+		$cpanel_images->campaigns = $this->CpanelButton('configuration48.jpg', 'index.php?option=com_jafilia&controller=campaigns', JText::_('JAF_CAMPAIGNS'));
+		//$cpanel_images->campaigns = $this->CpanelButton('configuration48.jpg', 'index.php?option=com_jafilia', JText::_('Campaigns under construction'));
 //		$cpanel_images->newcampaign = $this->CpanelButton('configuration48.jpg', 'index.php?option=com_jafilia&controller=campaigns&task=new', JText::_('JAF_NEW_CAMPAIGN'));
 		$cpanel_images->config = $this->CpanelButton('configuration48.jpg', 'index.php?option=com_jafilia&controller=config', JText::_('JAF_CONFIG'));
 		$cpanel_images->user = $this->CpanelButton('partner48.jpg', 'index.php?option=com_jafilia&controller=user', JText::_('JAF_USER'));

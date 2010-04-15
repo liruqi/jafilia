@@ -28,12 +28,12 @@ padding-left:60px;
     <td>
 	<pre>
 <div id="jflogo">
-<strong>Jafilia 1.5 RC2. Affiliate networking component for Joomla 1.5.x</strong>
+<strong>Jafilia 1.5 RC3. Affiliate networking component for Joomla 1.5.x</strong>
 
 Hi fellow marketeer, thank you for testing Jafilia. <br>With your help we will make it stable and reliable, but for now, <br>remember this is first beta and DO NOT use this release in production sites ;-)
 </div>	
 
-First of all: <br>Thank you and congratulations to Arkadiusz Maniecki and QuarkBit Software <a target="_blank" href="http://www.webwizard.pl/en/" >http://www.webwizard.pl/en/</a> <br>for this great piece of software, we where all waiting this release with much expectation. <br>We will make our best untill everyone is happy with this new version.
+First of all: <br>Thank you and congratulations to Arkadiusz Maniecki and QuarkBit Software <a target="_blank" href="http://webwizard.pl/en/" >http://webwizard.pl/en/</a> <br>for this great piece of software, we where all waiting this release with much expectation. <br>We will make our best untill everyone is happy with this new version.
 
 Whatever bug, opinion or ideas you have about it please post it in the Jafilia.com forums <br>under the newly created post for this release:
 <a target="_blank" href="http://www.jafilia.com/index.php/forum?func=showcat&catid=2" >http://www.jafilia.com/index.php/forum?func=showcat&catid=2</a>

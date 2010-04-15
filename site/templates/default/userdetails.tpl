@@ -52,22 +52,19 @@ $document->addStyleSheet('components/com_jafilia/templates/default/style.css'); 
 	  <label><span class="title"><?php echo JText::_('JAF_PAYPAL'); ?>:</span>
 	  <input name="paypal" type="text" size="20" value="<?php echo $PAYPAL; ?>" />
 	  </label></div>
-	<div id="bank"><span id="sprytextfield7">
-	  <label><span class="title"><?php echo JText::_('JAF_BANK'); ?>:*</span>
+	<div id="bank">
+	  <label><span class="title"><?php echo JText::_('JAF_BANK'); ?>:</span>
 	  <input name="bank" type="text" size="20" value="<?php echo $BANK; ?>" />
-	  </label><span class="textfieldRequiredMsg"><?php echo JText::_('JAF_TEXT_REQUIRED'); ?></span></span>
 	  </div>
-	<div id="blz"><span id="sprytextfield8">
-	  <label><span class="title"><?php echo JText::_('JAF_BLZ'); ?>:*</span>
+	<div id="blz">
+	  <label><span class="title"><?php echo JText::_('JAF_BLZ'); ?>:</span>
 	  <input name="blz" type="text" size="20" value="<?php echo $BLZ; ?>" />
-	  </label><span class="textfieldRequiredMsg"><?php echo JText::_('JAF_TEXT_REQUIRED'); ?></span></span>
 	  </div>
-	<div id="konto"><span id="sprytextfield9">
-	  <label><span class="title"><?php echo JText::_('JAF_KONTO'); ?>:*</span>
+	<div id="konto">
+	  <label><span class="title"><?php echo JText::_('JAF_KONTO'); ?>:</span>
 	  <input name="konto" type="text" size="20" value="<?php echo $KONTO; ?>" />
       <input name="uid" type="hidden" value="<?php echo $UID; ?>" />
       <input name="id" type="hidden" value="<?php echo $ID; ?>" />
-	  </label><span class="textfieldRequiredMsg"><?php echo JText::_('JAF_TEXT_REQUIRED'); ?></span></span>
 	  </div>
 	<center><div><label><input name="submit" type="submit" value="<?php echo JText::_('JAF_SEND'); ?>" /></label></div></center>
 </fieldset>

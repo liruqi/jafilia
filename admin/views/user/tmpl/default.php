@@ -15,6 +15,9 @@ defined( '_JEXEC' ) or die( '=;) linki ' );
          <th>
             <?php echo JText::_( 'JAF_NAME' ); ?>
          </th>
+		 <th>
+            <?php echo JText::_( 'JAF_EMAIL' ); ?>
+         </th>
          <th>
             <?php echo JText::_( 'JAF_HOMEPAGE' ); ?>
          </th>
@@ -54,6 +57,9 @@ defined( '_JEXEC' ) or die( '=;) linki ' );
             <a href="<?php echo $link; ?>"><?php echo $row->firstname." ".$row->lastname; ?></a>
          </td>
          <td>
+            <?php echo $row->mail; ?>
+         </td>		 
+         <td>
             <?php echo $row->url; ?>
          </td>
          <td>
@@ -72,7 +78,7 @@ defined( '_JEXEC' ) or die( '=;) linki ' );
 ?>
     <tfoot>
     <tr>
-      <td colspan="7">
+      <td colspan="8">
          <?php echo $this->pagination->getListFooter(); ?>
       </td>
     </tr>

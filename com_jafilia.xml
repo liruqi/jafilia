@@ -2,14 +2,14 @@
 <!DOCTYPE install SYSTEM "http://dev.joomla.org/xml/1.5/component-install.dtd">
 <install type="component" version="1.5.0" method="upgrade">
     <name>Jafilia</name>
-    <version>1.5.0 RC2</version>
+    <version>1.5.0 RC3</version>
     <description><![CDATA[Jafilia 1.5 - Affiliate networking component for Joomla 1.5.x]]></description>
     <license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
     <author>Arkadiusz Maniecki</author>
     <authorEmail>biuro@webwizard.pl</authorEmail>
     <authorUrl>http://www.jafilia.com</authorUrl>
-    <copyright>Copyright © 2008 - 2009 Jafilia.com. All rights reserved.</copyright>
-    <creationDate>27-09-2009</creationDate>
+    <copyright>Copyright © 2008 - 2010 Jafilia.com. All rights reserved.</copyright>
+    <creationDate>15-04-2010</creationDate>
     <installfile>install.jafilia.php</installfile>
     <uninstallfile>uninstall.jafilia.php</uninstallfile>
     <files folder="site">
@@ -24,6 +24,9 @@
     </files>
     <languages folder="site/language">
         <language tag="du-DU">du-DU/du-DU.com_jafilia.ini</language>
+        <language tag="nl-NL">nl-NL/nl-NL.com_jafilia.ini</language>
+		<language tag="ro_RO">ro-RO/ro-RO.com_jafilia.ini</language>
+		<language tag="ru-RU">ru-RU/ru-RU.com_jafilia.ini</language>
         <language tag="en-GB">en-GB/en-GB.com_jafilia.ini</language>
         <language tag="es-ES">es-ES/es-ES.com_jafilia.ini</language>
         <language tag="fr-FR">fr-FR/fr-FR.com_jafilia.ini</language>
@@ -84,6 +87,9 @@
         </files>
         <languages folder="admin/language">
             <language tag="du-DU">du-DU/du-DU.com_jafilia.ini</language>
+			<language tag="nl-NL">nl-NL/nl-NL.com_jafilia.ini</language>
+			<language tag="ro_RO">ro-RO/ro-RO.com_jafilia.ini</language>
+			<language tag="ru-RU">ru-RU/ru-RU.com_jafilia.ini</language>
             <language tag="en-GB">en-GB/en-GB.com_jafilia.ini</language>
             <language tag="es-ES">es-ES/es-ES.com_jafilia.ini</language>
             <language tag="fr-FR">fr-FR/fr-FR.com_jafilia.ini</language>

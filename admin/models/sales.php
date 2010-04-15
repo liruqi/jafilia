@@ -50,13 +50,71 @@ class JafiliaModelSales extends JModel
       }
       return $this->_data;
    }   
+	function UpdVMStatus() {
+		/*
+			P  	Pending
+			C 	Confirmed
+			X 	Cancelled
+			R 	Refunded
+			S 	Shipped	
+		*/
+		$db = &JFactory::getDbo();
+		$db2 = &JFactory::getDbo();
+		$db3 = &JFactory::getDbo();
+		$query="SELECT * FROM #__jafilia_sales WHERE version='sale'";
+		$db->setQuery($query);						
+		$rows = $db->loadObjectList();
+		foreach ($rows as $row)	{
+			$query2="SELECT order_status FROM #__vm_orders WHERE order_id=".$row->order." LIMIT 1";	//order_status
+			$db2->setQuery($query2);						
+			$rsta = $db2->loadResult();
+			//echo"<hr>".$row->order." - ".$rsta." = ".$row->status;
+			switch ($rsta) {
+				case "P":
+				if ($row->status!="open") {
+				$sql = 'UPDATE `#__jafilia_sales` SET `status` = \'open\' WHERE `order` = '.$row->order.' LIMIT 1;'; 
+				//echo"<hr>".$sql;
+				$db3->setQuery($sql);
+					if (!$db3->query()) {
+					//echo'nie zapisano zmiany';
+					}
+					//else echo 'zapisano';
+				}
+				break;
+				case "C":
+				if ($row->status!="approved") {
+				$sql = 'UPDATE `#__jafilia_sales` SET `status` = \'approved\' WHERE `order` = '.$row->order.' LIMIT 1;'; 
+				//echo"<hr>".$sql;
+				$db3->setQuery($sql);
+					if (!$db3->query()) {
+					//echo'nie zapisano zmiany';
+					}
+					//else echo 'zapisano';
+				}
+				break;
+				case "X":
+				if ($row->status!="canceled") {
+				//$sql = 'UPDATE `#__jafilia_sales` SET `status` = \'canceled\' WHERE `order` = '.$row->order.' LIMIT 1;'; 
+				//$sql = "UPDATE #__jafilia_sales SET status='canceled' WHERE 'order'=".$row->order.""; 
+				$sql = 'UPDATE `#__jafilia_sales` SET `status` = \'canceled\' WHERE `order` = '.$row->order.' LIMIT 1;'; 
+				//echo"<hr>".$sql;
+				$db3->setQuery($sql);
+					if (!$db3->query()) {
+					//echo'nie zapisano zmiany';
+					}
+					//else echo 'zapisano';
+				}
+				break;
+			}
+		}
+	}   
 	function _buildQuery()	{
-		$query = ' SELECT * '
-			. ' FROM #__jafilia_sales ';
+		$query = ' SELECT * FROM #__jafilia_sales ';			
 		return $query;
 	}
 	function getData()	{
 		if (empty( $this->_data ))	{
+			$this->UpdVMStatus();
 			$query = $this->_buildQuery();
 			$this->_data = $this->_getList( $query, $this->getState('limitstart'), $this->getState('limit') );
 		}

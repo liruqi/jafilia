@@ -10,7 +10,7 @@ $shortversion = $JAFVERSION->RELEASE . " " . $JAFVERSION->DEV_STATUS. " " . $JAF
 <div id="footer">
 	<p class="copyright">
 		Jafilia <?php echo $shortversion; ?> is Free Software released under the <a href="http://www.gnu.org/licenses/gpl-2.0.html" target="_blank">GNU/GPL License</a>.<br>
-		Copyright &copy; 2008-2009 by <a href="http://www.jafilia.com" target="_blank">Jafilia.com</a>				
+		Copyright &copy; 2008-<?php echo date('Y'); ?> by <a href="http://www.jafilia.com" target="_blank">Jafilia.com</a>				
 	</p>
 </div>
 
