@@ -261,7 +261,8 @@ function com_install() {
 	</div>
 	
 	<?php
-	include( "helpers/hackinfo.php" );
+	include( "helpers/donations.php" );
+	include( "helpers/hackinfo.php" );	
 	
    if( $errors ) {
       return FALSE;

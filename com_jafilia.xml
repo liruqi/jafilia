@@ -25,7 +25,7 @@
     <languages folder="site/language">
         <language tag="du-DU">du-DU/du-DU.com_jafilia.ini</language>
         <language tag="nl-NL">nl-NL/nl-NL.com_jafilia.ini</language>
-		<language tag="ro_RO">ro-RO/ro-RO.com_jafilia.ini</language>
+		<language tag="ro-RO">ro-RO/ro-RO.com_jafilia.ini</language>
 		<language tag="ru-RU">ru-RU/ru-RU.com_jafilia.ini</language>
         <language tag="en-GB">en-GB/en-GB.com_jafilia.ini</language>
         <language tag="es-ES">es-ES/es-ES.com_jafilia.ini</language>
@@ -88,7 +88,7 @@
         <languages folder="admin/language">
             <language tag="du-DU">du-DU/du-DU.com_jafilia.ini</language>
 			<language tag="nl-NL">nl-NL/nl-NL.com_jafilia.ini</language>
-			<language tag="ro_RO">ro-RO/ro-RO.com_jafilia.ini</language>
+			<language tag="ro-RO">ro-RO/ro-RO.com_jafilia.ini</language>
 			<language tag="ru-RU">ru-RU/ru-RU.com_jafilia.ini</language>
             <language tag="en-GB">en-GB/en-GB.com_jafilia.ini</language>
             <language tag="es-ES">es-ES/es-ES.com_jafilia.ini</language>

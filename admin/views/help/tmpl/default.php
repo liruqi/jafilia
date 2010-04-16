@@ -9,7 +9,10 @@ defined( '_JEXEC' ) or die( 'Direct Access to this location is not allowed.' );
 			<tr><th>Homepage:</th><td><?php echo JHTML::_('link', 'http://www.jafilia.com/', 'Jafilia Homepage', 'target="_blank"'); ?></td></tr>
 			<tr><th>Needed Hacks:</th>
 				<td>
-					<?php include( JPATH_COMPONENT.DS."helpers".DS."hackinfo.php" ); ?>
+					<?php 
+					include( JPATH_COMPONENT.DS."helpers".DS."donations.php" ); 
+					include( JPATH_COMPONENT.DS."helpers".DS."hackinfo.php" ); 					
+					?>
 				</td>
 			</tr>
 		</tbody>	

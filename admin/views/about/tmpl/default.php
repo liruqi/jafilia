@@ -10,10 +10,14 @@ $shortversion = $JAFVERSION->RELEASE . " " . $JAFVERSION->DEV_STATUS. " " . $JAF
 		<tr><td colspan="2"><?php echo JText::_('ABOUT'); ?></td></tr>
 		<tr><th>Name:</th><td>Jafilia</td></tr>
 		<tr><th>Version:</th><td><?php echo $shortversion; ?></td></tr>
-		<tr><th>Coded by:</th><td>Arkadiusz Maniecki</td></tr>
+		<tr><th>Coded by:</th><td>Arkadiusz Maniecki, Yosu Cadilla</td></tr>
 		<tr><th>Contact:</th><td>contact@jafilia.com</td></tr>
-		<tr><th>Support:</th><td><?php echo JHTML::_('link', 'http://www.jafilia.com/', 'Jafilia Homepage', 'target="_blank"'); ?></td></tr>
-		<tr><th>Copyright:</th><td>Copyright &copy; 2008 - 2009 Jafilia.com</td></tr>
+		<tr><th>Support:</th><td><?php echo JHTML::_('link', 'http://www.jafilia.com/', 'Jafilia Homepage', 'target="_blank"'); 
+		include( JPATH_COMPONENT.DS."helpers".DS."donations.php" ); 
+		?></td></tr>
+		<tr><th>Copyright:</th><td><?php echo $JAFVERSION->COPYRIGHT; 
+		 echo '<br />'.$JAFVERSION->URL; 
+		?></td></tr>
 		<tr><th>License:</th><td>GNU LESSER GENERAL PUBLIC LICENSE</td></tr>
 	</tbody>	
 	</table>

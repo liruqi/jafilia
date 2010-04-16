@@ -23,13 +23,13 @@ class jafVersion {
 	// Song by Enya
 	var $CODENAME = 'SUNSHINE';
 	/** @var string Date */
-	var $RELDATE = '15/04/2010';
+	var $RELDATE = '16/04/2010';
 	/** @var string Time */
 	var $RELTIME = '17:00';
 	/** @var string Timezone */
 	var $RELTZ = 'GMT';
 	/** @var string Revision */
-	var $REVISION = '3 (build: 31)';
+	var $REVISION = '3 (build: 32)';
 	/** @var string Copyright Text */
 	var $COPYRIGHT = "Copyright &copy; 2008-2010 Jafilia Development Team - All rights reserved."; 
 	/** @var string URL */
