@@ -10,7 +10,7 @@ $langTag = $lang->getTag();
 switch ($langTag) {
 	case "pl-PL" :
 ?>
-	<table width="350" border="0" cellspacing="1" cellpadding="1">
+	<table width="450" border="0" cellspacing="1" cellpadding="1">
 	<tr>
 	<td align="center">
 	Wspomóż rozwój polskiej społeczności Jafilia. <br>Ułatwi nam to pracę nad rozwojem komponentu oraz nieodpłatne zapewnienie wsparcia technicznego.	<br>

@@ -67,8 +67,15 @@ class JafiliaModelLinks extends JModel {
  	return $this->_pagination;
   }
    function store() {    
-	$row =& $this->getTable();
+	$row =& $this->getTable();	
 	$data = JRequest::get( 'post' );
+	$link = 'index.php?option=com_jafilia&controller=links';
+	
+	if($data['title']=="") {		
+		$this->setError( "Error: No Title;" );
+		return false;
+	}
+	
 	$uploaddir = JPATH_SITE.DS.'components'.DS.'com_jafilia'.DS.'images'.DS;
 	$image = strtolower($_FILES["image"]["name"]);
 	// these datatypes are allowed
@@ -79,8 +86,7 @@ class JafiliaModelLinks extends JModel {
 	// get file size
 	$size = $_FILES["image"]["size"];
 	// check if datatype and size is valid
-	if ( !in_array($type, $allowed ) && $size < $max_size ) {
-		$link = 'index.php?option=com_jafilia&controller=links';
+	if ( !in_array($type, $allowed ) && $size < $max_size ) {		
 		$msg = $type.'+is+no+valid+datatype';
 		$this->setRedirect($link, $msg);
 	}

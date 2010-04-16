@@ -2,7 +2,7 @@
 defined( '_JEXEC' ) or die( 'Direct Access to this location is not allowed.' );
 include( JPATH_COMPONENT.DS."helpers".DS."version.php" );
 $JAFVERSION =& new jafVersion();
-$shortversion = $JAFVERSION->RELEASE . " " . $JAFVERSION->DEV_STATUS. " " . $JAFVERSION->REVISION;
+$shortversion = $JAFVERSION->RELEASE . " " . $JAFVERSION->DEV_STATUS. " " . $JAFVERSION->REVISION. " " . $JAFVERSION->BUILD;
 ?>
 <form action="index.php" method="post" name="adminForm" id="adminForm">
 	<table class="adminlist">
